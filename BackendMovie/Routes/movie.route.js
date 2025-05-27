@@ -4,7 +4,7 @@ import { tokenVerify } from "../Middlewares/auth.middleware.js"
 const movieRouter =Router()
 
 movieRouter.post("/add",tokenVerify,AddMovies)
-movieRouter.get("/get",tokenVerify,GetMovies)
+movieRouter.get("/get",GetMovies)
 movieRouter.get("/:movieID",tokenVerify,GetMoviesID)
 movieRouter.put("/:movieID",tokenVerify,updateMovieByID)
 movieRouter.delete("/:movieID",tokenVerify,deleteMovieByID)
