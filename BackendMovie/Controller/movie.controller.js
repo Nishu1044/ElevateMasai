@@ -1,11 +1,11 @@
-const movieModel = require("../Models/movie.model");
+import {movieModel}from "../Models/movie.model.js"
 
 // add movie
 const AddMovies = async(req,res)=>{
-    const {name,description,category,imageUrl} = req.body;
+    const { name,director,year,genre,poster} = req.body;
     try {
         const newMovie = new movieModel({
-            name,description,category,imageUrl
+            name,director,year,genre,poster
         })
         await newMovie.save()
         res.status(201).json({message:"movie added successfully"})
@@ -68,5 +68,5 @@ const deleteMovieByID = async(req,res)=>{
     }
 }
 
-module.exports = {AddMovies,GetMovies,GetMoviesID,updateMovieByID,deleteMovieByID}
+export{AddMovies,GetMovies,GetMoviesID,updateMovieByID,deleteMovieByID}
 

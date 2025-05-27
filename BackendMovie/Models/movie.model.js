@@ -1,15 +1,30 @@
-const mongoose = require("mongoose")
+import mongoose from "mongoose";
 
-const MovieSchema = mongoose.Schema({
-  name: { type: String, required: true },
-  description: { type: String, required: true },
-  category: { type: String, required: true },
-  imageUrl: { type: String, required: true } 
-    },
-      {
-        timestamps: true, // Automatically manages `createdAt` and `updatedAt` fields
-      }
-)
+const movieSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  director: {
+    type: String,
+    required: true
+  },
+  year: {
+    type: Number,
+    required: true
+  },
+  genre: {
+    type: String,
+    required: true
+  },
+  poster: {
+    type: String,
+    required: true
+  }
+}, {
+  timestamps: true // Optional: adds createdAt and updatedAt
+});
 
-const movieModel = mongoose.model("movie",MovieSchema)
-module.exports = movieModel
+const movieModel = mongoose.model('Movie', movieSchema);
+
+export {movieModel};

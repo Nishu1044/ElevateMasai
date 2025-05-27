@@ -1,10 +1,10 @@
-const express = require("express")
-require("dotenv").config();
+import express from "express"
+import "dotenv/config"
+import cors from "cors"
+import {movieRouter} from "./Routes/movie.route.js"
 
-
-const cors = require('cors');
-const movieRouter = require("./Routes/movie.route");
-const Connection = require("./Config/db");
+import  {Connection}  from "./Config/db.js"
+import  { userRouter } from "./Routes/user.route.js"
 
 
 const app = express()
@@ -19,6 +19,8 @@ app.get('/', (req, res) => {
   });
 
 app.use("/api/movie",movieRouter)
+app.use("/api/user",userRouter)
+
 const PORT = process.env.PORT || 8001
 
 

@@ -1,13 +1,13 @@
-const express = require("express")
+import {Router} from "express"
+import  { AddMovies, GetMovies, GetMoviesID, updateMovieByID, deleteMovieByID } from "../Controller/movie.controller.js"
+import { tokenVerify } from "../Middlewares/auth.middleware.js"
+const movieRouter =Router()
 
-const { AddMovies, GetMovies, GetMoviesID, updateMovieByID, deleteMovieByID } = require("../Controller/movie.controller")
-const movieRouter = express.Router()
-
-movieRouter.post("/add",AddMovies)
-movieRouter.get("/get",GetMovies)
-movieRouter.get("/:movieID",GetMoviesID)
-movieRouter.put("/:movieID",updateMovieByID)
-movieRouter.delete("/:movieID",deleteMovieByID)
+movieRouter.post("/add",tokenVerify,AddMovies)
+movieRouter.get("/get",tokenVerify,GetMovies)
+movieRouter.get("/:movieID",tokenVerify,GetMoviesID)
+movieRouter.put("/:movieID",tokenVerify,updateMovieByID)
+movieRouter.delete("/:movieID",tokenVerify,deleteMovieByID)
 
 
-module.exports = movieRouter
+export { movieRouter}
